@@ -7,11 +7,9 @@
     <tr>
       <th>First name</th>
       <th>Last name</th>
-      <th>Bsb</th>
+      <th>BSB</th>
       <th>Account number</th>
-      <th>Privacy</th>
       <th>Avatar</th>
-      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,9 +21,7 @@
         <td><%= profile.last_name %></td>
         <td><%= profile.bsb %></td>
         <td><%= profile.account_number %></td>
-        <td><%= profile.privacy %></td>
         <td><%= profile.avatar %></td>
-        <td><%= profile.user %></td>
         <td><%= link_to 'Show', profile %></td>
         <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
         <td><%= link_to 'Destroy', profile, method: :delete, data: { confirm: 'Are you sure?' } %></td>

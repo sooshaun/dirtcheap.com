@@ -22,29 +22,34 @@
   </div>
 
   <div class="field">
-    <%= form.label :bsb %>
+    <p><%= form.label :BSB, "BSB" %>(include 0 if it is part of the BSB)</p>
     <%= form.text_field :bsb, id: :profile_bsb %>
   </div>
 
   <div class="field">
-    <%= form.label :account_number %>
+    <p><%= form.label :account_number %>(include 0 if it is part of the account number)</p>
     <%= form.text_field :account_number, id: :profile_account_number %>
   </div>
 
   <div class="field">
-    <%= form.label :privacy %>
-    <%= form.check_box :privacy, id: :profile_privacy %>
+    <p><%= form.label :mobile_number %>(include 0 if it is part of the mobile number)</p>
+    <%= form.text_field :mobile_number, id: :profile_mobile_number %>
   </div>
-
   <div class="field">
-    <%= form.label :avatar %>
+    <%= form.label :avatar, "Photo" %>
     <%= form.text_area :avatar, id: :profile_avatar %>
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :profile_user_id %>
+    <%# form.label :user_id %>
+    <%# form.text_field :user_id, id: :profile_user_id %>
   </div>
+
+  <div class="field">
+      <h2>Privacy Policy  <%= form.check_box :privacy, id: :profile_privacy %></h2>
+      <p>I have read and understood that DirtCheap.com, the Company, to collect my information in order to register my details for a business account. Without my information, the Company would be unable to provide any service. My information is handled in accordance with the Company Privacy Policy which outlines how to access and/or correct my personal information or make a privacy related complaint. </p>
+</div>
+
 
   <div class="actions">
     <%= form.submit %>

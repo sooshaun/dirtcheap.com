@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Photo:</strong>
+  <%= @profile.avatar %>
+</p>
+
+<p>
   <strong>First name:</strong>
   <%= @profile.first_name %>
 </p>
@@ -11,7 +16,7 @@
 </p>
 
 <p>
-  <strong>Bsb:</strong>
+  <strong>BSB:</strong>
   <%= @profile.bsb %>
 </p>
 
@@ -21,19 +26,22 @@
 </p>
 
 <p>
+  <strong>Date Joined:</strong>
+  <%= @profile.created_at.strftime("%d %b %Y") %>
+</p>
+
+<p>
+  <strong>Last Update:</strong>
+  <%= @profile.updated_at.strftime("%d %b %Y") %>
+</p>
+
+<p>
   <strong>Privacy:</strong>
   <%= @profile.privacy %>
 </p>
 
-<p>
-  <strong>Avatar:</strong>
-  <%= @profile.avatar %>
-</p>
 
-<p>
-  <strong>User:</strong>
-  <%= @profile.user %>
-</p>
+
 
 <%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back', profiles_path %>
+<%= link_to 'Back to Profile Home Page', profiles_path %>
