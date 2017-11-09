@@ -1,0 +1,140 @@
+// Place all the styles related to the Messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+//  To style the message box
+.messages-list {
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .message-received {
+    border-radius: 50px 0px 50px 0px;
+    background-color: rgb(35, 157, 214);
+    border-color: #BCE8F1;
+    margin: 20px 100px;
+    padding: 10px;
+    float: right;
+    width: 200px;
+    clear:both;
+  }
+  
+  .message-sent {
+   border-radius: 0px 50px 0px 50px;
+    background-color: rgb(35, 201, 76);
+    border-color: #EEEEEE;
+    margin: 20px 100px;
+    padding: 10px;
+    float: left;
+    width: 200px;
+    clear:both;
+  }
+ 
+ // To style the content in the box app > views > messages > index.html
+ 
+ .tweetelement {
+   padding: 14px;
+   margin: 10px auto;
+   // width: 650px;
+   border: #ddd 1px solid;
+   border-top-color: #eee;
+   border-bottom-color: #bbb;
+   border-radius: 5px;
+   box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+   font: bold 14px/18px Helvetica, Arial, sans-serif;
+   color: #000;
+   background-color: rgba(250, 250, 250, .8);
+   border-radius: 25px;
+ }
+ 
+   .button3 {
+     border-radius: 25px;
+     background: url(action.jpg);
+     background-position: left top;
+     background-repeat: repeat;
+     padding: 2px;
+     width: 30px;
+     height: 30px;
+     font-size:8px;
+   }
+ 
+  
+ 
+ // To style the heading
+ 
+ .headline {
+   margin-top: 30px;
+   margin-left: 0px;
+   color: darkolivegreen;
+   text-shadow: 1px 1px black;
+ }
+ 
+ .sticky{
+ 
+   position: sticky;
+   top: 0;
+ }
+ 
+ // To style a table in view conversation > index.html.erb
+ 
+ table {
+   border-collapse: collapse;
+   width: 100%;
+ }
+ 
+ th {
+   height: 50px;
+  
+ }
+ 
+ table, th, td {
+   border-bottom: 1px solid black;
+   text-align: left;
+   vertical-align: center;
+   padding: 15px;
+ }
+ 
+ // Style different button
+ 
+ .button1 {
+   border: 1px solid black;
+   width: 100px;
+   height: 50px;
+ }
+ 
+ 
+ .button{
+   margin:auto;
+   text-align: center;
+ }
+ 
+ .button2 {
+   border-radius: 25px;
+   background-color: rgba(250, 250, 250, .8);
+   border: 1px solid black;
+   height: 50px;
+   color: white;
+   text-decoration: none;
+ }
+
+//  To fixed the left from scrolling
+
+.leftcol {
+  /* position: fixed;
+   top: 0%;
+   left: 0%; */
+   text-align: center;
+  //  border:solid 1px green;
+   overflow:hidden;
+}
+
+.rightcol {
+  /* border:solid 1px red;
+  position: relative;
+  top: 0%;
+  left: 50%;  */
+  border:solid 1px red; 
+  overflow-y: scroll;
+  height: 500px;
+}

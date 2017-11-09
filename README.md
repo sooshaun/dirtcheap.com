@@ -51,7 +51,7 @@ belongs_to :user
 
 belongs_to :item_image, class_name: 'Photo'
 belongs_to :seller, class_name: 'User'
-belongs_to :buyer, class_name: 'User'
+belongs_to :buyer, class_name: 'User'To flag the incoming message and read message
 
 
 #### Model : Photo
@@ -80,8 +80,9 @@ belongs_to :sender, class_name: 'User'
 
 
 #### Model : Conversation
-- house_item: references
+- house_item: references      <== the key is communicating about the item and not the user
 - user1: references
+
 
 #### Model : Support
 - user: references
@@ -99,19 +100,12 @@ belongs_to :user
 ![](app/assets/images/5-entity-relationship-diagram.png)
 
 ## Wireframes
+
 ![](app/assets/images/4-wireframe-low-fidelity.png)
 
+---
 
 ## Trello Project Management Tool
 source : https://trello.com/b/fp4LahXo/good-second-hand-household
 
 ---
-
-# CREATE PROJECT AND INITIAL FRAMEWORK SETUP
-$ rails new dirtcheap -T --database=postgresql
-
-$ cd dirtcheap
-
-$ rails db:create
-
-

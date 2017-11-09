@@ -1,0 +1,97 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import 'font-awesome';
+ @import "bootstrap";
+ @import 'devise';
+ @import 'support';
+ @import 'household_items';
+ @import 'profiles';
+ @import 'conversations';
+ @import 'messages';
+
+
+// This is for the universal footer area
+.bottom-padding{
+  margin: auto;
+  padding: 0px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.logo{
+  text-decoration: none;
+  background-color: red;
+  padding: 0px;
+  border: solid 1px black;
+}
+
+
+.avatar-circle{
+  border-radius: 50%;
+  size: "5x5";
+}
+
+.avatar-circle2{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.btn{
+  text-align: center;
+  margin-bottom: 3px;
+  padding: 5px;
+  border: 0 none;
+  font-weight: 100;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width:140px;
+}
+
+
+//  .navbar{
+//     margin-bottom: 0;
+//     padding: 1% 0; /* to increase the height of the navbar */
+//     /* background-color: dodgerblue;   */
+//     font-size: 1.2em;  
+//     /* background: none;  <=== to make the nav transparent. Turn it off if you do not want the transparency */
+//     // background: rbga(130, 144, 255, 0.5);
+//   }
+  
+  
+  // .navbar-brand{
+  //   float: left;
+  //   min-height: 55px;
+  //   /* padding: 0 15px 5px; */
+  // }
+  
+// .brand{
+//    padding-left: 20px;
+//    size: 50px;
+// }
+ 
+
+
+  
+ 
+  
+ 
+
+
+
+

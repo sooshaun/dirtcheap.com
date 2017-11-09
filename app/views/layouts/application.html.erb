@@ -1,7 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dirtycheap</title>
+    <title>DirtCheap.com</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/favicon/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,10 +26,107 @@
   </head>
 
   <body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand", href="/household_items"><i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i> DirtCheap.com</a>
+
+        <%# Hamburger Button for mobile %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <%# THE GLOBAL NAVIGATION %>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <% if !current_user.nil? %>
+              <% if !current_user.profile.nil? %>
+              <li class="nav-item"> I am <%= current_user.profile.first_name %>
+                  <% if !current_user.profile.avatar.nil? %>
+                  <%= image_tag current_user.profile.avatar_url(:thumb), class:"nav-link", class:"avatar-circle2" %> >>
+                  <% end %>
+              </li>
+              <% end %>
+            <% end %>
+        <%# class="nav-item" +  class="nav-link" to align all the item in line%>
+            <li class="nav-item">
+              <%= link_to 'Home Page', household_items_path, class:"nav-link" %>
+            </li>
+          
+            <li class="nav-item">
+              <li class="dropdown" class="nav-item"><a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="#">Services<span class="caret"></a>
+                  <ul class="dropdown-menu">
+                        <li><%= link_to 'Item to list', new_household_item_path, class:"nav-link" %></li>
+                        <li><%# link_to 'Update existig item to list', edit_household_item_path(@household_item), class:"nav-link" %></li>
+                  </ul>
+            </li>
+
+            <li class="dropdown" class="nav-item"><a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="#"><%= fa_icon "user 1x " %>  My account<span class="caret"></span></a>
+
+                   <ul class="dropdown-menu">
+                        <% if !user_signed_in?  %>
+                          <li><%= link_to 'Sign in', new_user_session_path, class:"nav-link" %></li>
+                           <li><%= link_to 'Sign up', new_user_registration_path, class:"nav-link" %></li>
+                         <% end %>
+                        <% if user_signed_in?  && current_user.profile.present? && !current_user.profile.id.nil? %>
+                           <li><%= link_to 'My Profile', profile_path(current_user.profile.id), class:"nav-link" %></li>
+                        <% end %>
+                         <% if user_signed_in?  %>
+                        <li><%= link_to 'My listing', my_listing_path, class:"nav-link" %></li>
+                        <% end %>
+                        <% if user_signed_in?  %>
+                        <li><%= link_to 'My Inbox', conversations_path, class:"nav-link" %></li>
+                        <% end %>
+
+                  </ul>
+            </li>
+    
+            <li class="nav-item">
+              <li class="dropdown" class="nav-item"><a class="nav-link" class="dropdown-toggle" data-toggle="dropdown" href="#">Contact Us<span class="caret"></a>
+                  <ul class="dropdown-menu">
+                      <li><%= link_to 'Support Team', support_path %><li>
+                  </ul>
+            </li>
+
+            <li class="nav-item">
+                <% if user_signed_in?  %>
+                  <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:" nav-link"%></li> 
+                <% end %>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+  </nav>
+
+      <%# if user_signed_in? %>
+          <!--<h3 class='headline'> Welcome <%# current_user.first_name %>
+          | Signed in as:--> <%# current_user.email %>
+          <%# link_to "Edit Account", edit_user_registration_path, class: "bth btn-primary"%>
+        <%# else %>
+        
+          <%# link_to "Sign In", new_user_session_path, class: "bth btn-primary"%>
+         <%# need a space between method: :delete %>
+          <%# link_to "Sign Up", new_user_registration_path, class: "bth btn-primary"%>
+        
+        <%#end%>
+
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
 
         <%= flash[:privacy] %>
     <%= yield %>
+
+    <!-- Footer -->
+    <div class="bottom-padding">
+    <footer class="py-3 bg-light">
+      <div class="container">
+        <p class="m-0 text-center text-black">Copyright &copy; DirtCheap.com 2017</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+    </div>
+
   </body>
 </html>

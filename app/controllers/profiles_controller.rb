@@ -1,21 +1,32 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_profile_sign_up, only: [:new]
+  before_action :set_profile, only: [:show, :edit, :update]
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    # @profiles = Profile.all
+    # if @profile = Profile.where(user_id: current_user.id)  
+
+    #  else
+    #     redirect_to  household_items_path, notice: "This is not your profile. You are only allowed to view your own profile page."
+    #  end
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
+    
+  if @profile.user_id != current_user.id
+    redirect_to  household_items_path, notice: "This is not your profile. You are only allowed to view your own profile page."
+ end
+
   end
 
   # GET /profiles/new
   def new
     @profile = Profile.new
+    # @profile = Profile.where(user_id: current_user.id)
   end
 
   # GET /profiles/1/edit
@@ -26,12 +37,13 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    # To have the user id from user.
     @profile.user = current_user
-    if profile_params[:privacy] == "1"
-      @profile.privacy = true
-    else
-      @profile.privacy = false
-    end
+    # if profile_params[:privacy] == "1"
+    #   @profile.privacy = true
+    # else
+    #   @profile.privacy = false
+    # end
     if @profile.privacy == true
         respond_to do |format|
           if @profile.save
@@ -81,6 +93,10 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :bsb, :account_number, :privacy, :avatar)
+      params.require(:profile).permit(:first_name, :last_name, :bsb, :account_number, :privacy, :avatar, :mobile_number)
+    end
+
+    def set_profile_sign_up
+      @profile = Profile.where(user_id: current_user.id)
     end
 end

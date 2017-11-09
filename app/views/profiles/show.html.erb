@@ -1,47 +1,70 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Photo:</strong>
-  <%= @profile.avatar %>
-</p>
+ <div class="container"> 
+    <div class="row">
 
-<p>
-  <strong>First name:</strong>
-  <%= @profile.first_name %>
-</p>
+        <div class="col-lg-3">
+          <div class="top-padding">
+            <h4 class="my-4, text-center"><%= image_tag @profile.avatar_url(:thumb) unless @profile.avatar.blank? %></h4>
+            <div class="card-footer text-center">
+             <% if user_signed_in?  && current_user.profile.present? %>
+                <%= link_to 'Edit', edit_profile_path(@profile), class:"btn btn-primary"  %>
+              <% end %>
+               <%= link_to 'Home Page', household_items_path, class:"btn btn-primary" %>
+            </div>
+          </div>
+      </div>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @profile.last_name %>
-</p>
+<div class="col-lg-1">
+    </div>
 
-<p>
-  <strong>BSB:</strong>
-  <%= @profile.bsb %>
-</p>
+      <div class="col-lg-8">
+         <div class="top-padding">
+            <div class="description">
 
-<p>
-  <strong>Account number:</strong>
-  <%= @profile.account_number %>
-</p>
+              <p>
+                <strong>First name:</strong>
+                <%= @profile.first_name %>
+              </p>
 
-<p>
-  <strong>Date Joined:</strong>
-  <%= @profile.created_at.strftime("%d %b %Y") %>
-</p>
+              <p>
+                <strong>Last name:</strong>
+                <%= @profile.last_name %>
+              </p>
 
-<p>
-  <strong>Last Update:</strong>
-  <%= @profile.updated_at.strftime("%d %b %Y") %>
-</p>
+              <p>
+                <strong>BSB:</strong>
+                <%= @profile.bsb %>
+              </p>
 
-<p>
-  <strong>Privacy:</strong>
-  <%= @profile.privacy %>
-</p>
+              <p>
+                <strong>Account number:</strong>
+                <%= @profile.account_number %>
+              </p>
+
+              <p>
+                <strong>Mobile number:</strong>
+                <%= number_to_phone @profile.mobile_number %>
+              </p>
+
+              <p>
+                <strong>Date Joined:</strong>
+                <%= @profile.created_at.strftime("%d %b %Y") %>
+              </p>
+
+              <p>
+                <strong>Last Update:</strong>
+                <%= @profile.updated_at.strftime("%d %b %Y") %>
+              </p>
+
+              <p>
+                <strong>Privacy:</strong>
+                I agreed and understood that DirtCheap.com, the Company, to collect my information in order to register my details for a business account. Without my information, the Company would be unable to provide any service. My information is handled in accordance with the Company Privacy Policy which outlines how to access and/or correct my personal information or make a privacy related complaint.
+              </p>
+
+        </div><%# top-padding %>
+    </div><%# row %>
+</div><%# container-fluid %>
 
 
-
-
-<%= link_to 'Edit', edit_profile_path(@profile) %> |
-<%= link_to 'Back to Profile Home Page', profiles_path %>
+<%# link_to 'Back to Profile Home Page', profiles_path %>

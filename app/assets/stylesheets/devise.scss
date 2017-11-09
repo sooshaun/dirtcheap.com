@@ -1,0 +1,22 @@
+ //  Set Up Login Area
+ .loginbox{
+    width: 600px;
+    margin: 40px auto;
+    // margin-top: 5emf;
+    padding: 25px;
+    text-align: center;
+    box-sizing: border-box;
+    border: solid 2px grey;
+    background-color:rgba(0,0,0,0.1);
+    box-shadow: 0px 20px 15px rgba(0,0,0,0.4);
+}
+
+.user_button{
+    background-color: green;
+    color: white;
+    // margin-top:20px;
+    // margin-left:20px;
+    margin: 10px 0px 10px 20px;
+    width: 300px;
+    height: 35px;
+  }

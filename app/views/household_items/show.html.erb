@@ -1,0 +1,117 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="container"> 
+    <div class="row">
+
+        <div class="col-lg-3">
+          <div class="top-padding">
+              <h4 class="my-4, text-center"><%= @household_item.title %></h4>
+                  <% if @household_item.item_image.present? %>
+                      <%= image_tag @household_item.item_image_url(:thumb), size:"300x400", class:"show_image" %>
+                  <% else %>
+                      <%= image_tag "no-image-uploaded.png", size: "300x400", class:"show_image"  %>
+                  <% end %><br>
+                   <p>Listed since <%= @household_item.created_at.strftime("%A | %F | %r |") %> by <%= @household_item.seller.email %><%= image_tag @household_item.seller.profile.avatar_url(:thumb), class:"avatar-circle2" %></p>
+              <div class="card-footer text-center">
+
+                <% if @household_item.seller != current_user %>
+
+                    <%= link_to 'Buy', new_payment_path(household_item_id: @household_item.id), class:"btn btn-primary"%>
+
+                    <%# If current user and the interested item exist. Only list out the conversation with the item but not with the seller. Otherwise, the conversation with the seller will appear everywhere with the product listed %>
+                    <%# Assign the below variable will grab the whole object including the id %>
+                     <% if user_signed_in? %>
+                        <% conversation = Conversation.between(current_user.id, @household_item.id).first %>
+                        <% if conversation.present?%>
+                    <%# go directly to the new message. This is where I place all the messages of the index page here %>
+                        <%= link_to 'Contact Seller', new_conversation_message_path(conversation), class:"btn btn-primary btn-sm"%>
+                    <% else %>
+                    <%# otherwise, it has to create the conversation or so called the connection between the current user and the item seller. **This one is the embeded form in the code** %>
+                         <%= link_to 'Contact Seller', conversations_path(household_item_id: @household_item.id), method: :post, class:"btn btn-primary"%>
+                        <% end %><%# end of conversation%>
+                    <% end %> <%#end for user signed in%>
+                <% else %>
+                    <%= link_to 'Update', edit_household_item_path(@household_item), class:"btn btn-primary btn-sm"  %>
+                  
+                <% end %>
+                
+                  <%= link_to 'Inbox', conversations_path, class:"btn btn-primary btn-sm"  %>
+                <%# link_to 'Buy', new_payment_path(household_item_id: household_item.id), class:"btn btn-primary"%>
+              <%# link_to 'Back', household_items_path %>
+              </div>
+          </div>
+      </div>
+
+    <div class="col-lg-1">
+    </div>
+
+      <div class="col-lg-8">
+         <div class="top-padding">
+          <div class="description">
+            <p>
+                <strong>Description:</strong>
+                <%= @household_item.description %>
+            </p>
+          </div>
+          <p>
+              <strong>Year purchase:</strong>
+              <%= @household_item.year_purchase %>
+          </p>
+
+          <p>
+              <strong>Total cost :</strong>
+              <%= format_currency total_cost(@household_item.transport_cost_cents,@household_item.price_cents) %>  comprised of : -
+          </p>
+                <p>Selling Price:
+                      <% if @household_item.price_cents.present? %>
+                          <%= format_currency @household_item.price_cents.floor(2)*100%>
+                      <%else%>
+                          0
+                      <%end%> </p>
+                <p>Shipping cost (if applicable): 
+                    <% if @household_item.transport_cost_cents.present? %>
+                        <%= format_currency @household_item.transport_cost_cents.floor(2)*100 %>
+                    <% else %>
+                        0
+                    <% end %></p>
+          <hr>
+
+         <p>
+              <strong>Indicative pickup location :</strong>
+              <%= @household_item.location %>
+     
+                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@household_item.latitude},#{@household_item.longitude}&markers=#{@household_item.latitude},#{@household_item.longitude}&zoom=18&size=600x300&key=#{@google_api_key_static}", class: 'img-fluid img-rounded', alt: "#{@household_item.location} on the map"%></p>
+         
+        <br>
+    
+       </div><%# top-padding %>
+    </div><%# row %>
+</div><%# container-fluid %>
+
+<div class="household_item_review">
+    <strong> Ratings and reviews : </strong>
+    <% if @household_item.seller != current_user %>
+    <%= link_to 'Write Review', new_household_item_review_path(@household_item), class:"btn btn-primary"%>
+    <% end %>
+    <% @household_item.reviews.each do |review| %>
+        <p><br><%= review.comment %><%# image_tag review.user.profile.avatar_url(:thumb), size: "30x30", class:"avatar-circle"%></p>
+        <small class="text-muted">
+            <%= image_tag review.user.profile.avatar_url(:thumb), size: "30x30", class:"avatar-circle"%>
+            <%= review.rating.times do |index| %>
+            <%= fa_icon "thumbs-o-up 1x" %>
+            <% end %>
+            <br><%=review.user.email %><br><%= review.user.created_at.strftime("%A | %a %d/ %m/ %Y | %F | %h | %r |")%><br></small>
+        <hr>
+    <% end %>
+</div>
+
+
+
+        
+
+
+
+
+
+
+

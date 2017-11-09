@@ -23,7 +23,7 @@ a {
   color: #000;
 
   &:visited {
-    color: #666;
+    color: rgb(241, 236, 236);
   }
 
   &:hover {
@@ -68,6 +68,7 @@ div {
     font-weight: bold;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
+
     margin: -7px -7px 0;
     background-color: #c00;
     color: #fff;

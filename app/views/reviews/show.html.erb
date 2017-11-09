@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @review.comment %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @review.user.username %> |
+  <%= @review.user.email %> |
+  <%= @review.user.profile.first_name %>
+</p>
+
+<p>
+  <strong>Household item:</strong>
+  <%= @review.household_item.title %> |
+   <%= image_tag @review.household_item.item_image_url(:thumb) %>
+</p>
+
+<%= link_to 'Edit', edit_household_item_review_path(@review) %> |
+<%# link_to 'Back', reviews_path %>

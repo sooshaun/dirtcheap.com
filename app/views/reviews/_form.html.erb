@@ -1,0 +1,66 @@
+<%= form_with(model: [@household_item, review], local: true) do |form| %>
+  <% if review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="container-fluid"> 
+  <div class="row">
+
+      <div class="col-lg-3 col-md-6 mb-4 body-item">
+          <div class="card-footer text-center">
+                <p>Current user login profile :- </p>
+                <%= image_tag current_user.profile.avatar_url(:thumb), size: "200x300" %>
+                <div class="card-text">
+                  Hi,  :<%=  current_user.profile.first_name %>
+                </div><%# card-text %>
+          </div> <%# card-footer %>
+      </div> <%# col-lg %>
+      <div class="col-lg-3 col-md-6 mb-4 body-item">
+          <div class="card-footer text-center">
+              <p>Listed product :- </p>
+              <%= image_tag @household_item.item_image_url(:thumb), size: "200x300" %>
+              <div class="card-text">
+              <%= @household_item.title %>
+               </div><%# card-text %>
+          </div> <%# card-footer %>
+      </div> <%# col-lg %>
+ 
+
+ <div class="col-lg-3 col-md-6 mb-4 body-item">
+    <div class="card-footer text-center">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <%= form.label :comment %>
+                  <div class="col-xs-10">
+                  <%= form.text_area :comment, id: :review_comment, rows: 9, cols: 24 %>
+                      </div>
+                </div>
+
+              <div class="form-group">
+                <%= form.label :rating %><%= fa_icon "thumbs-o-up 1x" %>
+                <div class="col-xs-10">
+                <%= form.select :rating, options_for_select([1,2,3,4,5]), id: :review_rating %>
+                  </div>
+              </div>
+            </form>
+
+          <div class="actions">
+            <%= form.submit "Write review", class: 'btn btn-primary' %>
+          </div>
+   </div> <%# card-footer %>
+</div> <%# col-lg %>
+
+
+  </div> <%# row %>
+</div> <%# container-fluid %>
+
+<% end %>

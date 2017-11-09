@@ -1,0 +1,28 @@
+<br>
+<h2>Payment for <%= @payment.household_item.title %></h2>
+
+ <%= image_tag @payment.household_item.item_image_url(:thumb) %>
+
+<%= form_with(model: @payment) do |f| %>
+  <%= f.hidden_field :household_item_id %>
+
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Amount: <%=format_currency @payment.household_item.price_cents*100 %> 
+            Total amount : <%= format_currency total_cost(@aaa.price_cents, @payment.household_item.transport_cost_cents) %></span>
+    </label>
+  </article>
+<%#  The below is the figures display on the credit card payment %>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @payment.household_item.title %>"
+          data-email="<%= current_user.email %>"
+          data-amount="<%= total_cost(@payment.household_item.price_cents,@payment.household_item.transport_cost_cents) %>"
+          data-currency="aud"
+          data-locale="auto"></script>
+<% end %>

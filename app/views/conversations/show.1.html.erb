@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User1:</strong>
+  <%= @conversation.user1.email %> | <%= @conversation.user1.profile.first_name %> | <%=image_tag @conversation.user1.profile.avatar_url(:thumb), class:"avatar-circle2" %>
+</p>
+
+<p>
+  <strong>Seller: | First Name : | Last Name : </strong>
+
+  <%= @conversation.household_item.seller.email %> | 
+  <% if @conversation.household_item.seller.profile.present? %>
+   <%= image_tag @conversation.household_item.seller.profile.avatar_url(:thumb), class:"avatar-circle2" %>
+  <% else %>
+  <p>Seller does not leave any first name</p>
+  <% end %>
+</p>
+
+<%= link_to 'Contact Seller',  new_conversation_message_path(@conversation), class:"btn btn-danger" %>
+
+<%# link_to 'Edit', edit_conversation_path(@conversation) %>
+<%# link_to 'Back', conversations_path %>

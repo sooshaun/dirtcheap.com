@@ -1,0 +1,46 @@
+<div class='loginbox'>
+
+  <span><h2>Create your account</h2>
+  <%= fa_icon "users 4x " %></span>
+  <br />
+  <hr>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <span><%= devise_error_messages! %></span><br>
+
+ <br />
+    <div class="field">
+        <span><%= fa_icon "user 1x " %>
+        <%= f.text_field :username, placeholder: "Enter username", size: "40x20" %></span>
+      </div>
+
+    <div class="field">
+      <%# f.label :email %><br />
+        <span><%= fa_icon "envelope 1x " %>
+        <%= f.email_field :email, placeholder: "Enter email", size: "40x20" ,autofocus: true %></span>
+    </div><br />
+
+  <hr>
+
+    <div class="field">
+      <%# f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum) - "Password must have at least one uppercase, one lowercase and one symbol"</em>
+        <% end %><br />
+        <span ><%= fa_icon "lock 1x" %>
+        <%= f.password_field :password, placeholder: "Enter password", size: "40x20", autocomplete: "off" %></span>
+    </div>
+
+    <div class="field">
+      <%# f.label :password_confirmation %><br />
+         <span ><%= fa_icon "lock 1x" %>
+        <%= f.password_field :password_confirmation, placeholder: "Password confirmation", size: "40x20", autocomplete: "off" %></span>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Sign up an account", :class => "user_button" %>
+    </div>
+  <% end %>
+
+  <%= render "devise/shared/links" %>
+
+</div>

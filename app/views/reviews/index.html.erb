@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Reviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comment</th>
+      <th>Rating</th>
+      <th>User</th>
+      <th>Household item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reviews.each do |review| %>
+      <tr>
+        <td><%= review.comment %></td>
+        <td><%= review.rating %></td>
+         <td><%= image_tag review.household_item.item_image_url(:original), size: "200x300" %></td>
+        <td><%= link_to 'Show', [@household_item, review]%></td>
+    
+        <td><%= link_to 'Edit', edit_household_item_review_path(@household_item, review) %></td>
+        <td><%= link_to 'Destroy', [@household_item, review], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%# link_to 'Edit', edit_review_path(review) %></td>
+        <td><%# link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%# link_to 'Back to Home Page', household_items_path %>

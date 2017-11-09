@@ -1,0 +1,57 @@
+<h1>Messaging</h1>
+<%= current_user.email%>
+<div class="container"> 
+    <div class="row">
+
+        <div class="col-lg-6 rightcol scrollit">
+          <div class="top-padding">
+
+                <% @messages.each do |message| %>
+                    <div class="messages-list">
+                      <% if message.sender == current_user %>             
+                            <div class= "message-sent">
+                                <div class ="tweetelement">
+                                    <p>Message : <%= message.content %></p>
+                                    <% if message.conversation.user1 == current_user %>
+                                        <p>To : <%# image_tag message.conversation.household_item.seller.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= message.conversation.household_item.seller.email %></p>
+                                        <p>From : <%= image_tag current_user.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= current_user.email %></p>
+                                    <% else %>  
+                                        <p>To : <%= image_tag message.conversation.user1.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= message.conversation.user1.email %></p>
+                                        <p>From : <%= image_tag current_user.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= current_user.email %></p>
+                                    <% end %> 
+                                </div><%# tweetelement %>
+                             </div><%# message-sent %>  
+                             <% else %>      
+                              <div class= "message-received">
+                                <div class ="tweetelement">
+                                    <p>Message : <%= message.content %></p>
+                                        <p>To : <%= image_tag current_user.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= current_user.email %></p>
+                                        <p>From : <%= image_tag message.sender.profile.avatar_url(:thumb), class:"avatar-circle2" %><%= message.sender.email %></p>
+                                </div><%# tweetelement %>
+                             </div><%# message-sent %>      
+                      <% end %>    
+                  </div>
+                <% end %>
+          </div> <%# top-padding %>
+      </div> <%# col-lg-6 %>
+
+    <div class="col-lg-1">
+    </div>
+
+            <div class="col-lg-5 leftcol fixed">
+                <!--<div class="top-padding">-->
+                     <p><%= image_tag @conversation.household_item.item_image_url(:thumb) %>
+                      <p>listed by : <%= @conversation.household_item.seller.email %>
+                      <p>listed by : <%= @conversation.household_item.seller.profile.first_name %>
+                      <p>since : <%= @conversation.household_item.seller.created_at %>
+                      <%= render 'form', message: @message %>
+                    <p>Current user email : <%= current_user.email %></p>
+                </div> <%# top-padding %>
+            </div> <%# col-lg-5 %>
+       <!--</div><%# top-padding %>-->
+</div><%# row %>
+
+
+
+
+ <%# link_to 'Back to Listing Page', household_item_path %>

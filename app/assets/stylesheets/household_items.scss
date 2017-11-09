@@ -1,0 +1,93 @@
+// Place all the styles related to the household_items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// This is to position the whole area which consists of search and sign in area
+.top-padding{
+  padding-top : 60px;
+  margin-left: 20px;
+}
+
+// To align the whole search property
+.search_align{
+  text-align: right;
+}
+// To resize only the search bar
+.search_item{
+  width: 400px;
+  text-decoration: none;
+  padding:0px;
+  margin: 0px;
+}
+
+// The listing area
+.card-body{
+  margin:0px;
+  padding:0px;
+}
+
+// The listing area excluding title area
+.body-item {
+  margin-bottom: 30px;
+}
+
+.description{
+  margin-left: 0px;
+  min-height: 40px;
+}
+
+
+.payment_list{
+
+  margin-top: 40px;
+  margin-left: 30px;
+  min-height: 550px;
+
+}
+
+
+.household_item_review{
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: solid 1px black;
+  
+
+}
+
+@media (max-width: 1080px) {
+
+  // To reposition the sign-in area
+.top-padding{
+  text-align: center;
+}
+
+// The content of the listing
+  .card-body {
+    text-align: center;
+  }
+
+// The images
+ .resize {
+    width: 70%;
+  }
+
+  .show_image{
+    width:400px;
+    margin:auto;
+    padding:30px;
+    text-align: center;
+  }
+
+  .search_align{
+    text-align: center;
+  }
+
+  .search_item{
+    width: 300px;
+  }
+
+
+}
+
+
+ 

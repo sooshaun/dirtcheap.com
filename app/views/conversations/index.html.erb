@@ -1,0 +1,90 @@
+<p id="notice"><%= notice %></p>
+
+<div class="inbox-list">
+
+<h4 class='headline'><%= fa_icon "shopping-cart 1x " %> My shopping cart</h4>
+<details>
+<sumary></summary>
+<div class="table-responsive">
+
+<table class="table table-hover table-bordered">
+  <thead class="thead-inverse">
+    <tr>
+      <th colspan="2" width="6%">Enquiry item </th>
+      <th width="12%">Seller email </th>
+      <th width="12%">Seller name </th>
+      <th width="12%"> </th>
+      <!--<th>Potential buyer name</th>-->
+    </tr>
+  </thead>
+
+  <tbody>
+  <tr>
+    <% @conversations.each do |conversation| %>
+    <% if conversation.user1 == current_user  %>
+      <td><%= image_tag conversation.household_item.item_image_url(:thumb), size:"50x50" %></td>
+      <td><%= conversation.household_item.title %></td>
+      <td><%= conversation.household_item.seller.email %></td>
+      <td><%= conversation.household_item.seller.profile.first_name %></td>
+      <td><%= link_to 'Contact', new_conversation_message_path(conversation), class:"btn btn-primary" %>
+          <% if conversation.household_item.seller.profile.avatar.present? %>
+          <%= image_tag conversation.household_item.seller.profile.avatar_url(:thumb), class:"avatar-circle2" %>
+            <% else %>
+              No image uploaded</td>
+          <% end %>
+      <%# The below code is valid. I can turn it on bu # to = %>
+      <!--<td><%# conversation.user1.email %></td>
+       <td><%# conversation.user1.profile.first_name %></td>-->
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+ </details>
+
+</div>
+
+<hr>
+<div class="inbox-list">
+<h4 class='headline'><%= fa_icon "list 1x " %> My listing</h4>
+<details>
+<sumary></summary>
+<div class="table-responsive">
+    <table class="table table-hover table-bordered">
+      <thead class="thead-inverse">
+        <tr>
+          <th colspan="2" width="30%">Enquiry item </th>
+          <th colspan="2" width="40%">Message From</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <tr>
+        <% @conversations.each do |conversation| %>
+            <% if conversation.household_item.seller == current_user %>
+                <td><%= image_tag conversation.household_item.item_image_url(:thumb), size:"50x50" %></td>
+                <td><%= conversation.household_item.title %></td>
+                <td><%= conversation.user1.email %></td>
+                <td><%= conversation.user1.profile.first_name %></td>   
+
+                <td><%= link_to 'Contact', new_conversation_message_path(conversation), class:"btn btn-primary"%>
+                      <% if conversation.user1.profile.avatar.present? %>
+                          <%= image_tag conversation.user1.profile.avatar_url(:thumb), class:"avatar-circle2" %>
+                      <% else %>
+                          No image uploaded</td>
+                      <% end %>
+                </tr>
+            <% end %>
+        <% end %>
+      </tbody>
+    </table>
+</details>
+   
+
+
+<br>
+
+<%= link_to 'Back to listing', household_items_path, class:"btn btn-success" %>
+
+</div>

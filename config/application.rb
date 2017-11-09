@@ -16,6 +16,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module Dirtycheap
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -27,5 +28,7 @@ module Dirtycheap
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+   
   end
 end

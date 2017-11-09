@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<div class="sticky">
+<h1 class='headline'>Messages</h1>
+<div class="button">
+  <button class="button2"><%= link_to 'New Message', new_conversation_message_path(@conversation) %></button>
+</div>
+</div>
+  
+
+ 
+    <% @messages.each do |message| %>
+        <div class="messages-list">
+          <% if message.sender.email != message.conversation.user1.email %>             
+                <div class="message-sent">
+                    <p class="tweetelement">Recipient : <%= message.conversation.user1.email %></p>
+                    <p class="tweetelement">Message : <%= message.content %></p>
+                    <button class="button3"><%= link_to 'Show', [@conversation, message] %></button>
+                    <button class="button3"><%= link_to 'Edit', edit_conversation_message_path(@conversation, message) %></button>
+                    <button class="button3"><%= link_to 'Destroy', [@conversation, message], method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                    <p class="tweetelement">Sender: <%= message.sender.email %></p>    
+                </div>
+          
+
+          <%# if message.sender.email != message.conversation.user2.email %>
+          <% else %>
+                <div class="message-received">
+                    <p class="tweetelement">Recipient : <%= message.conversation.user2.email %></p>
+                    <p class="tweetelement">Message : <%= message.content %></p>
+                    <button class="button3"><%= link_to 'Show', [@conversation, message] %></button>
+                    <button class="button3"><%= link_to 'Edit', edit_conversation_message_path(@conversation, message) %></button>
+                    <button class="button3"><%= link_to 'Destroy', [@conversation, message], method: :delete, data: { confirm: 'Are you sure?' } %></button>
+                    <p class="tweetelement">Sender: <%= message.sender.email %></p>    
+                </div>
+          <% end %>    
+       </div>
+    <% end %>
+ 
+<br>
+

@@ -1,0 +1,26 @@
+<div class="support">
+      <br>
+      <h3>Customer Services</h3><br>
+
+          <%= form_with(url: support_url, local: true) do |f| %>
+              <% unless @error_messages.empty? %>
+                <% @error_messages.each do |message| %>
+                  <p><%= message %></p>
+                <% end %>
+              <% end %>
+    
+            
+                <div class="container">   
+                        <p><%= f.email_field :email, placeholder: "Enter your email", size: "58x22", class:"message1"  %>
+                </div>
+                  
+                <div class="container">       
+                      <%= f.text_area :message, rows: 10, placeholder: "Enter your message here", class:"message2"  %>
+                </div> 
+
+                <div class="container"> 
+                
+                <%= f.button '    Send   ', class:"fa fa-envelope send-button " %></p>
+          
+                <% end %>
+</div>

@@ -1,0 +1,108 @@
+<div class="top-padding">
+  <div class="container-fluid">
+    <div class="item-align">
+        <%= form_with(model: household_item, local: true) do |form| %>
+          <% if household_item.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(household_item.errors.count, "error") %> prohibited this household_item from being saved:</h2>
+
+              <ul>
+              <% household_item.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+        <div class="form-group">
+          <div class="field">
+            <%= form.label :title %>
+            <%= form.text_field :title, id: :household_item_title %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+              <%= form.label :classificaiton %>
+              <%= form.select :genre, options_for_select(["Furniture","Toys","Car","Electronic","Tools","Jewellery","Clothing"].sort), id: :household_item_genre %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="field">
+            <%= form.label :year_purchase, "Year Purchase (the item must be no more than 7 years)" %>
+            <%= form.select :year_purchase, options_for_select( ((Date.today.year-6)..Date.today.year).to_a, Date.today.year), id: :household_item_year_purchase %>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <div class="field">
+              <%= form.label :description, "Description (brand, condition of the item, pick up arrangement, requirements ...)" %>
+              <%= form.text_area :description, id: :household_item_description, rows: 6, cols:100 %>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <div class="field">
+              <%= form.label :postcode, "Street no." %>
+              <%= form.text_field :postcode, id: :household_item_postcode %>
+              </div>
+          </div>
+
+          <div class="form-group">
+            <div class="field">
+              <%= form.label :street_name %>
+              <%= form.text_field :street_name, id: :household_item_street_name %>
+            </div>
+          </div>
+
+           <div class="form-group">
+            <div class="field">
+              <%= form.label :city %>
+              <%= form.text_field :city, id: :household_item_city %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="field">
+              <%= form.label :state %>
+              <%= form.text_field :state, id: :household_item_state %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="field">
+              <%= form.label :country %>
+              <%= form.country_select :country, priority_countries: ["AU", "NZ", "US"] %>
+            </div>
+          </div>
+
+          <div class="form-group">
+              <div class="field">
+                <%= form.label :transport_cost_cents, "Transport charges" %>
+                <%= form.text_field :transport_cost_cents, id: :household_item_transport_cost_cents %>
+              </div>
+          </div>
+
+         <div class="form-group">
+          <div class="field">
+            <%= form.label :price_cents, "Selling Price" %>
+            <%= form.text_field :price_cents, id: :household_item_price_cents %>
+          </div>
+        </div>
+
+         <%# image_tag household_item.item_image_url(:thumb)%>
+         <div class="form-group">
+          <div class="field">
+            <%= form.label :item_image, "Please click below to upload the image here" %>
+            <%= form.hidden_field :item_image %>
+            <%= form.file_field :item_image, id: :household_item_item_image %>
+          </div>
+          </div>
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+    <% end %>
+    </div>
+  </div>
+</div>

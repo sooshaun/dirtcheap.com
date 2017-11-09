@@ -1,0 +1,15 @@
+<h2>Your shopping historical records</h4>
+<div class="payment_list">
+
+  <% @payments.each do |payment| %>
+      <div>
+          <h4><%= payment.household_item.title %></h4>
+          <%= image_tag payment.household_item.item_image_url(:thumb) %>
+          <p>listed on <%= time_tag payment.household_item.created_at %></p>
+          <p>Dear <%= current_user.profile.first_name %>, </p>
+          <p>The total $ <%= format_currency total_cost(payment.household_item.price_cents,payment.household_item.transport_cost_cents)%> transacted on <%= payment.created_at %>will be charged to your bank accounts.</p>
+          <hr>  
+      </div>
+  <% end %>
+
+</div>

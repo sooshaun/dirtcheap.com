@@ -1,0 +1,86 @@
+<p id="notice"><%= notice %></p>
+
+  <div class="container"> 
+    <div class="row">
+
+        <div class="col-lg-3">
+          <div class="top-padding">
+              <h4 class="my-4, text-center"><%= @household_item.title %></h4>
+                  <% if @household_item.item_image.present? %>
+                      <%= image_tag @household_item.item_image_url(:thumb), size:"300x400", class:"show_image" %>
+                  <% else %>
+                      <%= image_tag "no-image-uploaded.png", size: "300x400", class:"show_image"  %>
+                  <% end %><br>
+                   <p>listed since <%= @household_item.created_at %> by <%# @household_item.user.first_name %></p>
+              <div class="card-footer text-center">
+                <%= link_to 'Update', edit_household_item_path(@household_item), class:"btn btn-primary"  %>
+                <%# link_to 'Buy', new_payment_path(household_item_id: household_item.id), class:"btn btn-primary"%>
+              <%# link_to 'Back', household_items_path %>
+              </div>
+          </div>
+      </div>
+
+    <div class="col-lg-1">
+    </div>
+
+      <div class="col-lg-8">
+         <div class="top-padding">
+          <div class="description">
+            <p>
+                <strong>Description:</strong>
+                <%= @household_item.description %>
+            </p>
+          </div>
+          <p>
+              <strong>Year purchase:</strong>
+              <%= @household_item.year_purchase %>
+          </p>
+
+          <p>
+              <strong>Total cost :</strong>
+              <%= format_currency total_cost(@household_item.transport_cost_cents,@household_item.price_cents) %>  comprised of : -
+          </p>
+                <p>Selling Price:
+                      <% if @household_item.price_cents.present? %>
+                          <%= format_currency @household_item.price_cents.floor(2)*100%>
+                      <%else%>
+                          0
+                      <%end%> </p>
+                <p>Shipping cost (if applicable): 
+                    <% if @household_item.transport_cost_cents.present? %>
+                        <%= format_currency @household_item.transport_cost_cents.floor(2)*100 %>
+                    <% else %>
+                        0
+                    <% end %></p>
+          <hr>
+
+         <p>
+              <strong>Indicative pickup location :</strong>
+              <%= @household_item.location %>
+     
+                <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@household_item.latitude},#{@household_item.longitude}&markers=#{@household_item.latitude},#{@household_item.longitude}&zoom=18&size=600x300&key=#{@google_api_key_static}", class: 'img-fluid img-rounded', alt: "#{@household_item.location} on the map"%></p>
+         
+        <hr>
+
+            <p> <%= link_to 'Buy', new_payment_path(household_item_id: @household_item.id), class:"btn btn-primary"%>
+            <%= link_to 'Write Review', new_review_path(household_item_id: @household_item.id), class:"btn btn-primary"%>
+
+            <strong> Ratings and reviews </strong>
+          </p>
+
+        
+
+
+
+          <small class="text-muted">to insert the name who give the comment</small>
+
+    
+       </div><%# top-padding %>
+    </div><%# row %>
+</div><%# container-fluid %>
+
+
+
+
+
+

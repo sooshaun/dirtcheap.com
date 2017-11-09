@@ -23,6 +23,13 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
+    config.action_mailer.delivery_method = :mailgun
+    config.action_mailer.mailgun_settings = {
+        api_key: ENV.fetch('MAILGUN_API_KEY'),
+        domain: ENV.fetch('MAILGUN_DOMAIN'),
+  }
+
+
     config.cache_store = :null_store
   end
 
