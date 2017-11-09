@@ -37,7 +37,7 @@ gem 'stripe'
 # Webpage formatting
 gem 'bootstrap', '~> 4.0.0.beta'
 gem 'jquery-rails'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.1'
+gem "font-awesome-rails"
 # Email Support
 gem 'mailgun-ruby', '~>1.1.6'
 # Upload Image
