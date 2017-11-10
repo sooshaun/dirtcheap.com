@@ -113,7 +113,7 @@ source : https://trello.com/b/fp4LahXo/good-second-hand-household
 
 ## Future Development
 - Have the email function for payment confirmation
-- Multiple page upload
+- Multiple images upload
 - Algolia search function
 - Two ways tokenisation
 - Twilio email
