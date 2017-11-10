@@ -1,5 +1,6 @@
 # PROJECT NAME : DIRTCHEAP.COM
-- objective : To recycle at a relatively low price of good condition household item (aged not more than 6 years) within 3 days
+## Current Challenge : Property market is now expensive. Young family is facing lack of fund left to purchase household items to maintain a good lifestyle. While on the other side of the market, family's household income has increased over the time and want to purchase new household item.
+## Solution : To recycle at a relatively low price of good condition household item (aged not more than 6 years) within 3 days
 
 #### Model : User 
 email: string
@@ -107,5 +108,16 @@ belongs_to :user
 
 ## Trello Project Management Tool
 source : https://trello.com/b/fp4LahXo/good-second-hand-household
+
+---
+
+## Future Development
+- Have the email function for payment confirmation
+- Multiple page upload
+- Algolia search function
+- Two ways tokenisation
+- Twilio email
+- Flag item sold
+- Flag incoming email and read remail
 
 ---

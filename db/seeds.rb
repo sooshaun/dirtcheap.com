@@ -21,3 +21,4 @@ angelina = Profile.create!(first_name: 'Angelina', last_name: 'Jolie', bsb: '082
 # User.create!(username: 'Angelina#123', email: 'jolie@testing.com', password:'passWord&123')
 Jack#123   jack@testing.com
 Wills#123 smith@testing.com
+# User.create!(username: 'Arnold#123', email: 'schwarzeneggers@testing.com', password:'passWord&123')
