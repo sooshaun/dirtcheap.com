@@ -111,6 +111,16 @@ source : https://trello.com/b/fp4LahXo/good-second-hand-household
 
 ---
 
+## Deployment website
+https://dirtcheap.herokuapp.com/
+
+
+## Github
+
+
+
+---
+
 ## Future Development
 - Have the email function for payment confirmation
 - Multiple images upload
@@ -119,5 +129,6 @@ source : https://trello.com/b/fp4LahXo/good-second-hand-household
 - Twilio email
 - Flag item sold
 - Flag incoming email and read remail
+- CK editor
 
 ---
